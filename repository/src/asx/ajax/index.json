@@ -1,0 +1,6 @@
+{
+  "project"   : "ajax",
+  "group"     : "asx",
+  "version"   : "0.0.1",
+  "platforms" : ["browser"]
+}

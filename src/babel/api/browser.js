@@ -11,7 +11,8 @@ transform.run = function (code, opts = {}) {
   return new Function(transform(code, opts).code)();
 };
 
-transform.load = function (url, callback, opts = {}, hold) {
+transform.load = function (url, callback, opts, hold) {
+  opts = opts || {};
   opts.filename = opts.filename || url;
 
   var xhr = global.ActiveXObject ? new global.ActiveXObject("Microsoft.XMLHTTP") : new global.XMLHttpRequest();

@@ -1,0 +1,6 @@
+{
+  "project" : "runtime",
+  "group"   : "asx",
+  "version" : "0.0.1",
+  "platforms" : ["node","browser"]
+}

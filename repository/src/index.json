@@ -1,0 +1,12 @@
+{
+  "output"                : "../out",
+  "modules"               : {
+    "./asx/runtime"       : "watch",
+    "./asx/http"          : "watch",
+    "./asx/files"         : "watch",
+    "./asx/ajax"          : "watch",
+    "./asx/mvc"           : "watch",
+    "./asx/compiler"      : "watch",
+    "./test/files"        : "watch"
+  }
+}

@@ -5,10 +5,7 @@
   "author": "Sebastian McKenzie <sebmck@gmail.com>",
   "homepage": "https://babeljs.io/",
   "repository": "babel/babel",
-  "main": "lib/babel/api/node.js",
-  "browser": {
-    "./lib/babel/api/register/node.js": "./lib/babel/api/register/browser.js"
-  },
+  "main": "./lib/compiler.js",
   "bin": {
     "asxc": "./lib/compiler.js"
   },
@@ -25,10 +22,6 @@
     "6to5",
     "babel"
   ],
-  "scripts": {
-    "bench": "make bench",
-    "test": "make test"
-  },
   "dependencies": {
     "acorn-jsx": "^1.0.0",
     "ast-types": "~0.7.0",

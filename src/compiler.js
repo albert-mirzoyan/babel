@@ -87,11 +87,18 @@ class Compiler {
     return ['js'].indexOf(file.ext)>=0;
   }
   isIgnored(file){
-    return file.path == 'index.json';
+    if(this.config.whitelist){
+      return this.config.whitelist.indexOf(file.ext)==-1;
+    }else
+    if(this.config.blacklist){
+      return this.config.blacklist.indexOf(file.ext)!=-1;
+    }else{
+      return file.ext && file.ext.match(/^.*(bak|log|temp).*$/gi);
+    }
   }
   compile(watch){
     watch = this.config.watch = (this.config.watch || watch);
-    var sources=[], resources=[],ignores=[];
+    var sources=[], resources=[];
     var out = this.config.outPath;
     var root = this.config.srcPath;
     var files = Files.readDirRecursive(root);
@@ -100,7 +107,7 @@ class Compiler {
       switch(file.type){
         case 'source'   : sources.push(file); break;
         case 'resource' : resources.push(file); break;
-        default         : ignores.push(file); break;
+        case 'ignore'   : console.info('ignored '+file.path); break;
       }
     });
 
@@ -127,6 +134,10 @@ class Compiler {
       type : 'resource',
       ext  : Files.extension(f)
     };
+    if(file.path == 'index.json'){
+      file.type = 'project';
+      return true;
+    } else
     if(this.isIgnored(file)){
       file.type = 'ignore';
     } else
@@ -160,6 +171,7 @@ class Compiler {
         case 'resource' :
           Files.copyFile(file.file,Files.resolve(out,file.path));
         break;
+        case 'ignore'   : console.info('ignored '+file.path); break;
       }
     }
 

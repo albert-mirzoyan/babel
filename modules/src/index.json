@@ -1,8 +1,0 @@
-{
-  "output"      : "../out",
-  "modules"     : {
-    "./runtime" : "watch",
-    "./http"    : "watch",
-    "./core"    : "watch"
-  }
-}
